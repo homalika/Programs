@@ -1,4 +1,7 @@
 # Programs
+This repository consists of various C programming programs covering diverse topics like arrays, pointers, functions and more!
+
+---
 **1. Niven's Number**:
 
 **Problem Statement**:
