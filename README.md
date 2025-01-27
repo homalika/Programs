@@ -53,7 +53,11 @@ int main()
 ```
 
 **Sample input**:
+```
 18
+```
 
 **Sample output**:
+```
 18 is Niven's number.
+```
