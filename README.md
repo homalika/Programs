@@ -2,6 +2,10 @@
 This repository consists of various C programming programs covering diverse topics like arrays, pointers, functions and more!
 
 ---
+### 1. ASCII Values:
+Print the characters and it's respective ASCII Values in a sequential manner.
+- An ASCII value is a numeric code that represents a character in a computer. ASCII stands for American Standard Code for Information Interchange. 
+
 **1. Niven's Number**:
 
 **Problem Statement**:
