@@ -4,7 +4,77 @@ This repository consists of various C programming programs covering diverse topi
 ---
 ### 1. ASCII Values:
 Print the characters and it's respective ASCII Values in a sequential manner.
-- An ASCII value is a numeric code that represents a character in a computer. ASCII stands for American Standard Code for Information Interchange. 
+- An ASCII value is a numeric code that represents a character in a computer. ASCII stands for American Standard Code for Information Interchange.
+  
+**Algorithm**:
+1. Start the program.
+2. Initialize a for loop that iterates from 0 to 133.
+3. Inside the loop, use the printf function to print the character representation (%c) and its corresponding ASCII value (%d).
+4. Print the output in a tabular format with proper spacing.
+5. End the program.
+
+**Code**:
+```c
+#include <stdio.h>
+int main()
+{
+    for(int i = 0; i <= 133; i++)
+    {
+        printf("%c\t\t%d\n", i, i);
+    }
+    return 0;
+}
+/* A -- 65  to  Z -- 90
+   a -- 97  to  z -- 122 */
+```
+
+### 2. Abecedarian Series:
+Write a C program to generate an Abecedarian Series by inserting the second string (str2) after each character of the first string (str1). The output should display all possible combinations where each character of str1 is prefixed to str2.
+- An abecedarian series is a sequence of items that appear in alphabetical order.
+
+**Algorithm**:
+1. Start the program.
+2. Declare three character arrays: s1, s2, and out to store input strings and output.
+3. Prompt the user to enter two strings:
+   s1 (a sequence of characters).
+   s2 (a fixed string to append).
+4. Use a loop to iterate through each character of s1:
+   Construct a new string by appending s2 to each character of s1.
+   Store the result in out using snprintf() for safe string formatting.
+   Print the generated string.
+5. End the program.
+
+**Code**:
+```c
+#include <stdio.h>
+#include<string.h>
+int main()
+{
+    char s1[100], s2[100];
+    char out[100];
+    printf("Enter the first string : ");
+    scanf("%s", s1);
+    printf("Enter the second string : ");
+    scanf("%s", s2);
+    for(int i = 0; i < strlen(s1); i++)
+    {
+        snprintf(out, sizeof(out), "%c%s ", s1[i], s2); // appending strings in empty array 'out'
+        printf("%s ", out);
+    }
+    printf("\n");
+    return 0;
+}
+```
+
+**Input**:
+```
+Enter the first string: abcdef  
+Enter the second string: ate  
+```
+**Output**:
+```
+aate bate cate date eate fate  
+```
 
 **1. Niven's Number**:
 
