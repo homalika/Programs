@@ -36,12 +36,12 @@ Write a C program to generate an Abecedarian Series by inserting the second stri
 1. Start the program.
 2. Declare three character arrays: s1, s2, and out to store input strings and output.
 3. Prompt the user to enter two strings:
-   s1 (a sequence of characters).
-   s2 (a fixed string to append).
+   - s1 (a sequence of characters).
+   - s2 (a fixed string to append).
 4. Use a loop to iterate through each character of s1:
-   Construct a new string by appending s2 to each character of s1.
-   Store the result in out using snprintf() for safe string formatting.
-   Print the generated string.
+   - Construct a new string by appending s2 to each character of s1.
+   - Store the result in out using snprintf() for safe string formatting.
+   - Print the generated string.
 5. End the program.
 
 **Code**:
