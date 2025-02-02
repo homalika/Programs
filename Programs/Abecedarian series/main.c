@@ -15,7 +15,7 @@ int main()
     printf("Enter the second string : ");
     scanf("%s", s2);
     /*  
-    for(int i = 0; i < strlen(s1); i++)  ---  chatgpt
+    for(int i = 0; i < strlen(s1); i++)  ---  chat
     {
         printf("%c", s1[i]);
         printf("%s ", s2);
