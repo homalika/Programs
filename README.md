@@ -76,6 +76,63 @@ Enter the second string: ate
 aate bate cate date eate fate  
 ```
 
+### 3. Add Complex Numbers:
+Write a C program to perform the summation of two complex numbers. The program should define a complex structure, implement a function to add two complex numbers, and display the result in the correct format.
+
+**Algorithm**:
+1. Define a Structure: Create a typedef struct named complexNumber with two integer members: real and img. Use complex as an alias for complexNumber.
+2. Function for Addition: Define a function add(complex x, complex y) that takes two complex numbers and returns their sum.
+   - Add the real parts of x and y and store them in add.real.
+   - Add the imaginary parts of x and y and store them in add.img.
+   - Return the sum as a complex type.
+3. Main Function:
+   - Declare three variables of type complex: x, y, and sums.
+   - Initialize x and y with given values (real and imaginary parts).
+   - Print the values of x and y.
+   - Call the add() function and store the result in sums.
+   - Print the sum of x and y in the format real + imagi.
+4. End Program.
+
+**Code**:
+```c
+#include <stdio.h>
+typedef struct complexNumber{
+    int real;
+    int img;
+} complex; 
+complex add(complex x, complex y)
+{
+    complex add;
+    add.real = x.real + y.real;
+    add.img = x.img + y.img;
+    return (add);
+}
+int main()
+{
+    complex x, y, sums;
+    x.real = 1;
+    x.img = 2;
+    y.real = 3;
+    y.img = 4;
+    printf("x = %d + %di\n", x.real, x.img);
+    printf("y = %d + %di\n", y.real, y.img);
+    sums = add(x, y);
+    printf("Sum is : %d + %di\n", sums.real, sums.img);
+    return 0;
+}
+```
+**Input**:
+```
+x = 1 + 2i  
+y = 3 + 4i  
+```
+**Output**:
+```
+x = 1 + 2i  
+y = 3 + 4i  
+Sum is : 4 + 6i  
+```
+
 **1. Niven's Number**:
 
 **Problem Statement**:
