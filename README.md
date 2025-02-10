@@ -90,7 +90,7 @@ Write a C program to perform the summation of two complex numbers. The program s
    - Initialize x and y with given values (real and imaginary parts).
    - Print the values of x and y.
    - Call the add() function and store the result in sums.
-   - Print the sum of x and y in the format real + imagi.
+   - Print the sum of x and y in the format real + imag i.
 4. End Program.
 
 **Code**:
