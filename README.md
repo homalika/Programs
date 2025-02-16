@@ -350,6 +350,110 @@ Enter the decimal number: 6
 ```
 Binary equivalent in function is: 110
 ```
+### 9. Decimal to Hexadecimal:
+Convert a decimal number to its hexadecimal equivalent using division by 16 and display the result in uppercase format (0-9, A-F).
+
+**Algorithm**:
+1. Take input for a decimal number (d).
+2. Check if d is 0: If d == 0, print "0" and exit.
+3. Convert decimal to hexadecimal:
+   - Repeatedly divide d by 16, storing the remainders.
+   - If remainder < 10, store it as a character '0'–'9'.
+   - If remainder ≥ 10, convert it to 'A'–'F'.
+4. Print hexadecimal equivalent: Reverse and display the stored values.
+
+**Code**:
+```c
+#include <stdio.h>
+void dec_to_hex(int n)
+{
+    int hex[32];
+    int i = 0;
+    if (n == 0){
+        printf("0");
+        return;
+    }
+    while(n != 0){
+        int r = n % 16;
+        if (r < 10){
+            hex[i] = r + '0';
+        }else {
+            hex[i] = r - 10 + 'A';
+        }
+        n /= 16;
+        i++;
+    }
+    printf("Hexadecimal equivalent in funtion is : ");
+    for(int k = i - 1; k >= 0; k--)
+    {
+        printf("%c", hex[k]);
+    }
+    printf("\n");
+}
+int main(){
+    int d;
+    printf("Enter the decimal number : ");
+    scanf("%d", &d);
+    dec_to_hex(d);
+    return 0;
+}
+```
+**Input**:
+```
+Enter the decimal number: 255
+```
+**Output**:
+```
+Hexadecimal equivalent in function is: FF
+```
+### 10. Decimal to Octal:
+Convert a decimal number to its octal equivalent using division by 8 and display the result.
+
+**Algorithm**:
+1. Take input for a decimal number (d).
+2. Check if d is 0: If d == 0, print "0" and exit.
+3. Convert decimal to octal: Repeatedly divide d by 8, storing the remainders.
+4. Print octal equivalent: Reverse and display the stored values.
+
+**Code**:
+```c
+#include <stdio.h>
+void dec_to_oct(int n)
+{
+    int oct[32];
+    int i = 0;
+    if (n == 0){
+        printf("0");
+        return;
+    }
+    while(n != 0){
+        oct[i] = n % 8;
+        n /= 8;
+        i++;
+    }
+    printf("Octal equivalent in funtion is : ");
+    for(int k = i - 1; k >= 0; k--)
+    {
+        printf("%d", oct[k]);
+    }
+    printf("\n");
+}
+int main(){
+    int d;
+    printf("Enter the decimal number : ");
+    scanf("%d", &d);
+    dec_to_oct(d);
+    return 0;
+}
+```
+**Input**:
+```
+Enter the decimal number: 8
+```
+**Output**:
+```
+Octal equivalent in function is: 10
+```
 **1. Niven's Number**:
 
 **Problem Statement**:
