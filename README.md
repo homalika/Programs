@@ -264,6 +264,92 @@ Enter number of candies: 7
 Number of candies sold : 7 
 Number of candies available : 8
 ```
+### 7. Circular swap:
+Write a program to perform a circular swap of three numbers without using a temporary variable (a → b → c → a), and display the values before and after swapping.
+
+**Algorithm**:
+1. Take input for three integers (a, b, c).
+2. Print the values before swapping.
+3. Perform circular swapping using arithmetic operations:
+   - a = a + b + c
+   - b = a - (b + c) (b gets original a)
+   - c = a - (b + c) (c gets original b)
+   - a = a - (b + c) (a gets original c)
+4. Print the values after swapping.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int a, b, c;
+    printf("Enter values :");
+    scanf("%d %d %d", &a, &b, &c);
+    printf("Before Swap : %d %d %d \n", a, b, c);
+    a = a + b + c;
+    b = a - (b + c);
+    c = a - (b + c);
+    a = a - (b + c);
+    printf("After Circular Swap : %d %d %d\n", a, b, c);
+    return 0;
+}
+```
+**Input**:
+```
+Enter values: 3 5 7
+```
+**Output**:
+```
+Before Swap: 3 5 7
+After Circular Swap: 5 7 3
+```
+### 8. Decimal to Binary:
+Convert a decimal number to its binary equivalent using division by 2 and store the binary digits in an array before displaying them in reverse order.
+
+**Algorithm**:
+1. Take input for a decimal number (d). Check if d is 0:
+2. If d == 0, print "0" and exit. Convert decimal to binary:
+3. Repeatedly divide d by 2, storing the remainders in an array.
+4. Print binary equivalent: Reverse the stored remainders to get the correct binary representation.
+
+**Code**:
+```c
+#include <stdio.h>
+void dec_to_bin(int n)
+{
+    int bin[32];
+    int i = 0;
+    if (n == 0){
+        printf("0");
+        return;
+    }
+    while(n != 0){
+        bin[i] = n % 2;
+        n /= 2;
+        i++;
+    }
+    printf("Binary equivalent in funtion is :");
+    for(int k = i - 1; k >= 0; k--)
+    {
+        printf("%d", bin[k]);
+    }
+    printf("\n");
+}
+int main(){
+    int d;
+    printf("Enter the decimal number : ");
+    scanf("%d", &d);
+    dec_to_bin(d);
+    return 0;
+}
+```
+**Input**:
+```
+Enter the decimal number: 6
+```
+**Output**:
+```
+Binary equivalent in function is: 110
+```
 **1. Niven's Number**:
 
 **Problem Statement**:
