@@ -16,8 +16,7 @@ Print the characters and it's respective ASCII Values in a sequential manner.
 **Code**:
 ```c
 #include <stdio.h>
-int main()
-{
+int main(){
     for(int i = 0; i <= 133; i++)
     {
         printf("%c\t\t%d\n", i, i);
@@ -47,8 +46,7 @@ Write a C program to generate an Abecedarian Series by inserting the second stri
 ```c
 #include <stdio.h>
 #include<string.h>
-int main()
-{
+int main(){
     char s1[100], s2[100];
     char out[100];
     printf("Enter the first string : ");
@@ -104,8 +102,7 @@ complex add(complex x, complex y)
     add.img = x.img + y.img;
     return (add);
 }
-int main()
-{
+int main(){
     complex x, y, sums;
     x.real = 1;
     x.img = 2;
@@ -154,8 +151,7 @@ bool anagram(char s1[], char s2[])
 {
     int c[256] = {0};
     int i;
-    if(strlen(s1) != strlen(s2))
-    {
+    if(strlen(s1) != strlen(s2)){
         return false;
     }
     for(i = 0; s1[i] && s2[i]; i++)
@@ -165,15 +161,13 @@ bool anagram(char s1[], char s2[])
     }
     for(i = 0; i < 256; i++)
     {
-        if(c[i] != 0)
-        {
+        if(c[i] != 0){
             return false;
         }
     }
     return true;
 }
-int main()
-{
+int main(){
     char s1[100], s2[100];
     printf("Enter the first string : ");
     scanf("%s", s1);
@@ -182,9 +176,7 @@ int main()
     if(anagram(s1, s2))
     {
         printf("Anagrams\n");
-    }
-    else
-    {
+    }else{
         printf("Not Anagrams\n");
     }
     return 0;
@@ -211,8 +203,7 @@ Write a C program to demonstrate bitwise left shift (<<), bitwise right shift (>
 **Code**:
 ```c
 #include <stdio.h>
-int main()
-{
+int main(){
     int right = 6 >> 2;
     int left = 6 << 2;
     printf("Right shift : %d\n", right);
@@ -229,6 +220,49 @@ Right shift : 1
 Left shift : 24  
 -2  
 4294967294  
+```
+### 6. Candies sold: 
+A candy shop has 15 candies, with at least 5 always in stock. Customers can buy 1 to 10 candies. If the input is valid, update and display the stock; otherwise, print "INVALID INPUT" and show the total available candies.
+
+**Algorithm**:
+1. Initialize n = 15 (total candies) and k = 5 (minimum stock).
+2. Take input for the number of candies (m).
+3. Check if m is in the valid range (1 ≤ m ≤ n - k).
+   - If valid:
+     - Print the number of candies sold.
+     - Update and print the remaining candies.
+   - If invalid:
+     - Print "INVALID INPUT".
+     - Display the remaining candies (n).
+4. End the program.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n = 15, k = 5;
+    int m;
+    printf("Enter number of candies: ");
+    scanf("%d", &m);
+    if (m >= 1 && m <= n - k)
+    {
+        printf("Number of candies sold : %d \n", m);
+        printf("Number of candies available : %d \n", n - m);
+    }else{
+        printf("INVALID INPUT\n");
+        printf("Number of candies left : %d \n", n);
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter number of candies: 7
+```
+**Output**:
+```
+Number of candies sold : 7 
+Number of candies available : 8
 ```
 **1. Niven's Number**:
 
