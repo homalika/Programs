@@ -454,6 +454,64 @@ Enter the decimal number: 8
 ```
 Octal equivalent in function is: 10
 ```
+### 11. Direct, Indirect Recursion:
+Write a C program to demonstrate Direct Recursion and Indirect Recursion using functions. In Direct Recursion, a function calls itself, whereas in Indirect Recursion, two functions call each other in a cyclic manner.
+
+**Algorithm**:
+1. Direct Recursion (Function direct(n))
+- If n == 0, return (Base condition). Print n. Call direct(n-1).
+2. Indirect Recursion (Functions fun1(n) and fun2(n))
+- fun1(n):
+   - If n <= 0, return (Base condition). Print n. Call fun2(n-1).
+- fun2(n):
+   - If n <= 0, return (Base condition). Print n. Call fun1(n-1).
+
+**Code**:
+```c
+#include <stdio.h>
+void fun1(int n);
+void fun2(int n);
+void direct(int n)
+{
+    if(n == 0)
+        return;
+    printf("%d ", n);
+    direct(n - 1);
+}
+void fun1(int n)
+{
+    if (n <= 0)
+        return;
+    printf("%d ", n);
+    fun2(n - 1);
+}
+void fun2(int n)
+{
+    if(n <= 0)
+        return;
+    printf("%d ", n);
+    fun1(n - 1);
+}
+int main()
+{
+    printf("Direct recursion : ");
+    direct(6);
+    printf("\n\n");
+    printf("Indirect recursion : ");
+    fun1(6);
+    return 0;
+}
+```
+**Input**:
+```
+n = 6
+```
+**Output**:
+```
+Direct recursion : 6 5 4 3 2 1 
+Indirect recursion : 6 5 4 3 2 1
+```
+
 **1. Niven's Number**:
 
 **Problem Statement**:
