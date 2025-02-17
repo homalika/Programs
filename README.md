@@ -511,7 +511,50 @@ n = 6
 Direct recursion : 6 5 4 3 2 1 
 Indirect recursion : 6 5 4 3 2 1
 ```
+### 12. Double Diamond and a Half:
+Write a C program that takes an integer n as input and prints a pattern of * and spaces in a structured format using nested loops.
 
+**Algorithm**:
+1. Take an integer n as input.
+2. Use a nested loop: Outer loop (i) runs for 3 rows. Inner loop (j) runs from 1 to n-1 (controls column printing).
+3. Print * at positions where:
+   - (i + j) % 4 == 0
+   - i == 2 && j % 4 == 0
+4. Print spaces at all other positions.
+5. Move to the next line after each row with additional spaces to align properly.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    for(int i = 1; i <= 3; i++)
+    {
+        for (int j = 1; j < n; j++)
+        {
+            if ((i+j) % 4 == 0 || (i == 2 && j % 4 == 0)){
+                printf("*");
+            }else{
+                printf(" ");
+            }
+        }
+        printf("\n  ");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 12
+```
+**Output**:
+```
+  *   *   *   
+*   *   *   
+  *   *   *   
+```
 **1. Niven's Number**:
 
 **Problem Statement**:
