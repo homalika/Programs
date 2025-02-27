@@ -644,7 +644,239 @@ Enter range: 2 10
 Even numbers in given range are: 2 4 6 8 10 
 Summated value is: 30
 ```
+### 15. Factorial Using Recursion:
+Write a C program that takes an integer as input and calculates its factorial using a recursive function.
 
+**Algorithm**:
+1. Define a recursive function fact(int n) that:
+  - Returns 1 if n is 0 or 1 (since 0! = 1! = 1).
+  - Otherwise, returns n * fact(n - 1).
+2. In main(): Declare an integer variable a.
+  - Prompt the user to enter a number.
+  - Read the value into a.
+  - Call fact(a) to compute the factorial and print the result.
+
+**Code**:
+```c
+#include <stdio.h>
+int fact(int n){
+    if (n == 0 || n == 1){
+        return n;
+    }
+    return n * fact(n - 1);
+}
+int main(){
+    int a;
+    printf("Enter n : ");
+    scanf("%d", &a);
+    printf("Factorial of %d is : %d\n", a, fact(a));
+    return 0;
+}
+```
+**Input**:
+```
+Enter n : 5
+```
+**Output**:
+```
+Factorial of 5 is : 120
+```
+### 16. Fibonacci Using Recursion:
+Write a C program to find the nth Fibonacci number using recursion and display the Fibonacci series up to n terms.
+
+**Algorithm**:
+1. Define a recursive function fib(int n):
+   - If n == 0, return 0.
+   - If n == 1, return 1.
+   - Otherwise, return fib(n-1) + fib(n-2).
+2. In main(): Declare an integer n.
+   - Prompt the user to enter n.
+   - Read the value of n.
+   - Print the nth Fibonacci number using fib(n).
+   - Print the Fibonacci series up to n terms by calling fib(i) inside a loop.
+
+**Code**:
+```c
+#include <stdio.h>
+int fib(int n){
+    if (n == 0 || n == 1){
+        return n;
+    }
+    return fib(n - 1) + fib(n - 2);
+}
+int main(){
+    int n;
+    printf("Enter n : ");
+    scanf("%d", &n);
+    printf("%dth Fibonacci is : %d\n", n, fib(n));
+    printf("Fibonacci Series is : ");
+    for(int i = 0; i < n; i++){
+        printf("%d  ", fib(i));
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n : 7
+```
+**Output**:
+```
+7th Fibonacci is : 13
+Fibonacci Series is : 0  1  1  2  3  5  8  
+```
+### 17. Finding Missing Number:
+iven an array of size (n-1) containing distinct integers from the range [1, n], find the missing number.
+
+**Algorithm**:
+1. Calculate the expected sum of first n natural numbers using the formula: sum=𝑛(𝑛+1) / 2
+2. Compute the actual sum of elements in the given array.
+3. Subtract the actual sum from the expected sum to get the missing number.
+4. Print the missing number.
+
+**Code**:
+```c
+#include<stdio.h>
+int findm(int arr[], int n){
+    int tot = n * (n+1)/2;
+    int arrsum = 0;
+    for(int i = 0; i < n - 1; i++){
+        arrsum += arr[i];
+    }
+    return tot - arrsum;
+}
+int main(){
+    int arr[] = {1, 2, 3, 4, 6, 7, 8};
+    int n = 8;
+    int miss = findm(arr, n);
+    printf("Missing number is : %d\n", miss);
+    return 0;
+}
+```
+**Input**:
+```
+Enter value of n: 8
+Enter array: 1 3 2 6 7 8 4
+```
+**Output**:
+```
+Missing value is : 5
+```
+### 18. Find Series:
+Find the nth value of the series: 1 + 2^2/2! + 3^3/3! + ... + n^n/n!. For a given integer n.
+
+**Algorithm**:
+1. Read the integer n (number of terms in the series).
+2. Initialize sum = 0.0.
+3. For each term i (from 1 to n):
+   - Compute the numerator (i^i).
+   - Compute the denominator (i! or factorial of i).
+   - Add i^i / i! to the sum.
+4. Print the final sum rounded to 3 decimal places.
+
+**Code**:
+```c
+#include <stdio.h>  // there is issue in code
+int main(){
+    int n;
+    double sum = 0.0;
+    printf("Enter value of n: ");   //number of elements in the series
+    scanf("%d", &n);
+    double nr = 1.0;
+    long long dr = 1;
+    for (int i = 1; i <= n; i++){
+        for (int j = 1; j <= i; j++){
+            nr *= i;
+            dr *= j;
+        }
+        sum += nr/dr;
+    }
+    printf("Sum %.3f \n", sum);
+    return 0;
+}
+```
+**Input**:
+```
+Enter value of n: 5
+```
+**Output**:
+```
+Sum: 7.000
+```
+### 19. Find value of n:
+Find the sum of the series: 1/2 + 3/4 + 5/6 + ...... + n/n+1 where n is given integer.
+
+**Algorithm**:
+1. Read the integer n (number of terms in the series).
+2. Initialize sum = 0.0.
+3. Iterate through odd values of i from 1 to n (i.e., 1, 3, 5, ..., n).
+   - Compute each term as i / (i + 1).
+   - Add it to sum.
+4. Print the final sum rounded to 6 decimal places.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n;
+    double sum = 0.0;
+    printf("Enter value of n: ");   //number of elements in the series
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i += 2){
+        sum += (double)i / (i+1);
+    }
+    printf("Sum of series is: %.6f \n", sum);
+    return 0;
+}
+```
+**Input**:
+```
+Enter value of n: 12
+```
+**Output**:
+```
+Sum of series is: 4.103016
+```
+### 20. Flip Array d positions:
+Given an array arr[] of size n, rotate its elements left in a cyclic order by d positions.
+
+**Algorithm**:
+1. Input the array arr[] of size n and the number of positions d.
+2. Normalize d by setting d = d % n (if d > n).
+3. Reverse the first d elements of the array.
+4. Reverse the remaining n - d elements of the array.
+5. Reverse the entire array to get the final rotated array.
+6. Print the rotated array.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int arr[] = {1, 2, 3, 4, 5, 6};
+    int d = 3;
+    int n = sizeof(arr)/sizeof(arr[0]);
+    for (int i = 0; i < d; i++){
+        int first = arr[0];
+        for(int j = 0; j < n; j++){
+            arr[j] = arr[j + 1];
+        }
+        arr[n - 1] = first;
+    }
+    printf("Flipped array is : ");
+    for (int x = 0; x < n; x++){
+        printf("%d ", arr[x]);
+    }
+    return 0;
+}
+```
+**Input**:
+```
+arr[] = {1, 2, 3, 4, 5, 6}, d = 2
+```
+**Output**:
+```
+Flipped array is: 3 4 5 6 1 2
+```
 **1. Niven's Number**:
 
 **Problem Statement**:
