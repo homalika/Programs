@@ -555,6 +555,96 @@ Enter n: 12
 *   *   *   
   *   *   *   
 ```
+### 13. Estimated Time:
+Write a C program that takes an integer input representing weight and determines the estimated time required based on the given weight conditions. If the weight is not within the valid range, the program should display an "Invalid input" message.
+
+**Algorithm**:
+1. Declare an integer variable wt.
+2. Prompt the user to enter the weight.
+3. Read the input value and store it in wt.
+4. Check the weight range and print the estimated time:
+   - If wt == 0, print "Estd time : 0 minutes"
+   - If wt is between 1 and 2000, print "Estd time : 25 minutes"
+   - If wt is between 2001 and 4000, print "Estd time : 35 minutes"
+   - If wt is between 4001 and 7000, print "Estd time : 45 minutes"
+   - Otherwise, print "Invalid input"
+5. End the program.
+
+**Code**:
+```c
+#include <stdio.h>
+int main()
+{
+    int wt;
+    printf("Enter weight: ");
+    scanf("%d", &wt);
+    if (wt == 0){
+        printf("Estd time : 0 minutes \n");
+    }
+    else if (wt > 0 && wt <= 2000){
+        printf("Estd time : 25 minutes \n");
+    }
+    else if (wt > 2000 && wt <= 4000){
+        printf("Estd time : 35 minutes \n");
+    }
+    else if (wt > 4000 && wt <= 7000){
+        printf("Estd time : 45 minutes \n");
+    }
+    else{
+        printf("Invalid input\n");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter weight: 1500
+```
+**Output**:
+```
+Estd time : 25 minutes
+```
+### 14. Even Numbers:
+Write a C program that takes two integers as input representing a range and finds all even numbers within that range. The program should also calculate the sum of these even numbers and display the result.
+
+**Algorithm**:
+1. Declare three integer variables: m, n (for the range) and sum (initialize to 0).
+2. Prompt the user to enter the range values m and n.
+3. Read the values of m and n.
+4. Print the message "Even numbers in given range are: ".
+5. Use a for loop from m to n:
+   - If the number is even (i % 2 == 0), print it and add it to sum.
+6. Print the total sum of all even numbers found.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int m, n, sum = 0;
+    printf("Enter range: ");
+    scanf("%d %d", &m, &n);
+    printf("Even numbers in given range are: ");
+    for (int i = m; i <= n; i++){
+        if (i % 2 == 0){
+            sum += i;
+            printf("%d ",i);
+        }
+    }
+    printf("\n");
+    printf("Summated value is: %d", sum);
+    return 0;
+}
+```
+**Input**:
+```
+Enter range: 2 10
+```
+**Output**:
+```
+Even numbers in given range are: 2 4 6 8 10 
+Summated value is: 30
+```
+
 **1. Niven's Number**:
 
 **Problem Statement**:
