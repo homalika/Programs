@@ -877,6 +877,457 @@ arr[] = {1, 2, 3, 4, 5, 6}, d = 2
 ```
 Flipped array is: 3 4 5 6 1 2
 ```
+### 21. Floyd's Triangle:
+Write a C program that takes an integer n as input and prints a Floyd's Triangle pattern with n rows. The numbers in the triangle should be consecutive, starting from 1.
+
+**Algorithm**:
+1. Declare an integer variable n.
+2. Take user input for n.
+3. Initialize an integer c = 1 to keep track of the numbers to be printed.
+4. Use an outer loop from i = 1 to n (for each row):
+  - Use an inner loop from j = 1 to i (to print numbers in each row): Print the current value of c. Increment c. Move to the next line after the inner loop.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    int c = 1;
+    for(int i = 1; i<= n; i++){
+        for (int j = 1; j <= i; j++){
+            printf("%d ", c);
+            c++;
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 5
+```
+**Output**:
+```
+Enter n: 5
+1  
+2 3  
+4 5 6  
+7 8 9 10  
+11 12 13 14 15  
+```
+### 22. Geometric Series 2:
+Write a C program to find the n-th term of the sequence: 0, 0, 7, 6, 14, 12, 21, 18,...
+The pattern follows:
+Odd index terms (1st, 3rd, 5th, ...) → 7 * k, where k = index / 2 (integer division).
+Even index terms (2nd, 4th, 6th, ...) → 6 * (k - 1), where k = index / 2.
+
+**Algorithm**:
+1. Declare integer variables n and term.
+2. Take input for n (the term position).
+3. If n is odd, calculate the term as 7 * (n/2).
+4. If n is even, calculate the term as 6 * (n/2 - 1).
+5. Print the n-th term.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n, term;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    if (n % 2 == 1){
+        term = 7 * (n/2);
+    } else {
+        term = 6 * (n/2 - 1);
+    }
+    printf("The %d th term is :  %d\n", n, term);
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 5
+The 5 th term is : 14
+```
+**Output**:
+```
+Enter n: 6
+The 6 th term is : 12
+```
+### 23. Happy Number:
+Write a C program to check whether a given number n is a Happy Number or not.
+- A **Happy Number** is defined as a number that will eventually reach 1 when repeatedly replacing the number with the sum of the squares of its digits. If the process enters a cycle that includes 4, it will never reach 1 and is therefore not a Happy Number.
+
+**Algorithm**:
+1. Declare integer variables: n (input number), on (original number), sum, and digit.
+2. Take input for n. Store the original value of n in on.
+3. Base Case: If n is a single-digit number:
+   - If n == 1 or n == 7, print that it is a Happy Number.
+4. Otherwise, print that it is not a Happy Number and exit.
+5. Loop until n becomes 1 (Happy Number) or 4 (Non-Happy Number): Initialize sum = 0. Extract each digit from n, square it, and add it to sum. Update n = sum.
+6. If n becomes 1, print that the number is a Happy Number.
+7. If n becomes 4, print that the number is not a Happy Number.
+
+**Code**:
+```c
+#include <stdio.h>
+#include<math.h>
+int main(){
+    int n, on, sum, digit;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    on = n; // store original value
+    if (n >= 1 && n <= 9) {
+        if (n == 1 || n == 7) {
+            printf("%d is a Happy number\n", on);
+        } else {
+            printf("%d is not a Happy number\n", on);
+        }
+        return 0;
+    }
+    while(n != 1 && n != 4){
+        sum = 0;
+        while(n > 0){
+            digit = n % 10;
+            sum += pow(digit, 2);
+            n /= 10;
+        }
+        n = sum;
+    }
+    if (n == 1){
+        printf("%d is a Happy number\n", on);
+    } else {
+        printf("%d is not a Happy number\n", on);
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 19
+```
+**Output**:
+```
+19 is a Happy number
+```
+### 24. Head, Tail Recursion:
+Write a C program to demonstrate Head Recursion and Tail Recursion by printing numbers from 1 to n using Head Recursion and from n to 1 using Tail Recursion.
+
+**Algorithm**:
+1. Implement the Head Recursion function head(n): If n == 0, return. Recursively call head(n - 1). Print n.
+2. Implement the Tail Recursion function tail(n): If n == 0, return. Print n. Recursively call tail(n - 1).
+3. In the main() function:
+   - Call head(6) and print the result.
+   - Call tail(6) and print the result.
+
+**Code**:
+```c
+#include <stdio.h>
+void head(int n){  // Head recursion
+    if(n == 0)
+        return;
+    head(n - 1);
+    printf("%d ", n);
+}
+void tail(int n){ // Tail recursion
+    if(n == 0)
+        return;
+    printf("%d ", n);
+    tail(n - 1);
+}
+int main(){
+    printf("Head recursion is : ");
+    head(6);
+    printf("\n\n");
+    printf("Tail recursion is : ");
+    tail(6);
+    return 0;
+}
+```
+**Output**:
+```
+Head recursion is : 1 2 3 4 5 6 
+Tail recursion is : 6 5 4 3 2 1
+```
+### 25. Hollow Equilateral Triangle:
+Write a C program to print a hollow pyramid pattern of & symbols for a given height n.
+
+**Algorithm**:
+1. Take input n (number of rows).
+2. Use an outer loop from i = 1 to n:
+   - Print spaces to align the pyramid (loop from j = 1 to n - i).
+   - Use an inner loop to print & and spaces for the pyramid:
+     - Print & if it is the first column (j == 1), last column (j == (2*i - 1)), or the last row (i == n).
+     - Otherwise, print a space.
+   - Move to the next line.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n;
+    printf("Enter n: ");
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++){
+        for (int j=1;j<=n-i;j++){
+            printf(" ");
+        }
+        for (int j = 1; j <= (2*i - 1); j++){
+            if (j == 1 || i == n || j == (2*i - 1)){
+            printf("&");
+            } else {
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 5
+```
+**Output**:
+```
+    &    
+   & &   
+  &   &  
+ &     & 
+&&&&&&&&&
+```
+### 26. Hollow Square with Numbers:
+Write a C program to print a hollow square pattern of size n × n, where the border contains column numbers (j) and the inside is hollow.
+
+**Algorithm**:
+1. Take input n (size of the square).
+2. Use an outer loop from i = 1 to n (to print rows).
+   - Use an inner loop from j = 1 to n (to print columns).
+   - Print j if it is in the first row (i == 1), last row (i == n), first column (j == 1), or last column (j == n).
+   - Otherwise, print a space " ".
+3. Move to the next line after printing each row.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    for(int i=1;i<=n;i++){
+        for (int j=1;j<=n;j++){
+            if(i == 1 || i == n || j == 1 || j == n)
+            printf("%d",j);
+            else
+            printf(" ");
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 5
+```
+**Output**:
+```
+12345
+1   5
+1   5
+1   5
+12345
+```
+### 27. Hollow Square with Diagonals:
+Write a C program to print a pattern of 'H' characters inside an n × n square, where:
+  - The border of the square is made of 'H'.
+  - The main diagonal and secondary diagonal (forming an 'X') are also filled with 'H'.
+
+**Algorithm**:
+1. Take input n (size of the square).
+2. Use an outer loop from i = 1 to n (rows).
+3. Use an inner loop from j = 1 to n (columns).
+   - Print " H " if:
+     - It's in the first or last row (i == 1 || i == n).
+     - It's in the first or last column (j == 1 || j == n).
+     - It's in the main diagonal (i == j).
+     - It's in the secondary diagonal (i + j == n + 1).
+   - Otherwise, print spaces (" ").
+4. Move to the next line after printing each row.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    for(int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+           if ( i == 1 || i == n || j == 1 || j == n || i == j || i + j == n + 1){
+                printf(" H ");
+            } else {
+                printf("   ");
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 5
+```
+**Output**:
+```
+ H  H  H  H  H 
+ H  H     H  H 
+ H     H     H 
+ H  H     H  H 
+ H  H  H  H  H 
+```
+### 28. Hollow square:
+Write a C program to print a hollow square pattern using the character 'H', where:
+  - The border of the square is filled with 'H'.
+  - The inside of the square is hollow (empty spaces).
+
+**Algorithm**:
+1. Take input n (size of the square).
+2. Use an outer loop from i = 1 to n (rows).
+3. Use an inner loop from j = 1 to n (columns).
+  - Print 'H' if:
+   - It's in the first row (i == 1).
+   - It's in the last row (i == n).
+   - It's in the first column (j == 1).
+   - It's in the last column (j == n).
+  - Otherwise, print a space " ".
+4. Move to the next line after printing each row.
+
+**Code**:
+```c
+#include <stdio.h>
+int main() {
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    for(int i=1;i<=n;i++) {
+        for (int j=1;j<=n;j++) {
+            if (i == 1 || i == n || j == 1 || j == n) {
+                printf("H");
+            } else {
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 5
+```
+**Output**:
+```
+HHHHH
+H   H
+H   H
+H   H
+HHHHH
+```
+### 29. Hollow Triangle:
+Write a C program to print a hollow right-angled triangle pattern of numbers where:
+  - The left and right edges of the triangle contain numbers.
+  - The bottom row is fully filled with numbers.
+  - The inside of the triangle is hollow (empty spaces).
+
+**Algorithm**:
+1. Take input n (height of the triangle).
+2. Use an outer loop from i = 1 to n (for rows).
+3. Use an inner loop from j = 1 to i (for columns).
+   - Print j if:
+    - It's in the last row (i == n).
+    - It's in the first column (j == 1).
+    - It's in the last column of the row (i == j).
+   - Otherwise, print a space " ".
+4. Move to the next line after printing each row.
+
+**Code**:
+```c
+#include <stdio.h>
+int main() {
+    int n;
+    printf("Enter n: ");
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++) {
+        for (int j=1;j<=i;j++) {
+            if(i == n || i == j || j == 1) {
+                printf("%d", j);
+            } else {
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 5
+```
+**Output**:
+```
+1
+12
+1 3
+1  4
+12345
+```
+### 30. Largest digit in a num:
+Write a C program to find the largest digit in a given number n.
+
+**Algorithm**:
+1. Take input n (a positive integer).
+2. Initialize val = 0 to store the largest digit.
+3. Use a while loop until n becomes 0:
+   - Extract the last digit using rem = n % 10.
+   - If rem is greater than val, update val = rem.
+   - Remove the last digit using n /= 10.
+4. Print val as the largest digit.
+
+**Code**:
+```c
+#include <stdio.h>
+#include<math.h>
+int main() {
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    int val = 0;
+    while (n != 0) {
+        int rem = n % 10;
+        if (rem > val) {
+            val = rem;
+        }
+        n /= 10;
+    }
+    printf("Largest digit is %d\n", val);
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 83657
+```
+**Output**:
+```
+Largest digit is 8
+```
 **1. Niven's Number**:
 
 **Problem Statement**:
