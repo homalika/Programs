@@ -1250,9 +1250,9 @@ Write a C program to print a hollow right-angled triangle pattern of numbers whe
 2. Use an outer loop from i = 1 to n (for rows).
 3. Use an inner loop from j = 1 to i (for columns).
    - Print j if:
-    - It's in the last row (i == n).
-    - It's in the first column (j == 1).
-    - It's in the last column of the row (i == j).
+     - It's in the last row (i == n).
+     - It's in the first column (j == 1).
+     - It's in the last column of the row (i == j).
    - Otherwise, print a space " ".
 4. Move to the next line after printing each row.
 
