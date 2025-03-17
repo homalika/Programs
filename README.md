@@ -1328,65 +1328,426 @@ Enter n: 83657
 ```
 Largest digit is 8
 ```
-**1. Niven's Number**:
+### 31. Largest digit in num (Arrays):
+Write a C program to find the largest digit in a given number. The program should take an integer input from the user and determine the largest digit present in the number.
 
-**Problem Statement**:
-A Niven's number (also called a Harshad number) is an integer that is divisible by the sum of its digits. Your task is to write a program to determine whether a given number is a Niven's number or not.
+**Algorithm**:
+1. Start the program and take an integer input from the user.
+2. Determine the number of digits using log10(n).
+3. Extract each digit from the number and store it in an array.
+4. Find the largest digit by iterating through the array.
+5. Print the largest digit.
 
+**Code**:
+```c
+#include <stdio.h>
+#include<math.h>
+int main(){
+    int n;
+    printf("Enter number: ");
+    scanf("%d", &n);
+    int dig = (int)log10(n);
+    int arr[dig];
+    for (int i = 0; i < dig; i++){
+        int rem = n % 10;
+        arr[i] = rem;
+        n /= 10;
+    }
+    int big = arr[0];
+    for(int i = 1; i < n; i++){
+        if (arr[i] > big){
+            big = arr[i];
+        }
+    }
+    printf("Largest digit in given number is %d\n", big);
+    return 0;
+}
+```
 **Input**:
-A single integer n (1 ≤ n ≤ 10^9).
-
+```
+Enter number: 4785
+```
 **Output**:
-If the number is a Niven's number, print:
-n is Niven's number.
-If the number is not a Niven's number, print:
-n is not a Niven's number.
+```
+Largest digit in given number is 8
+```
+### 32. Largest element in array:
+Write a C program to find the largest element in an array. The program should take an integer input specifying the number of elements, accept the elements of the array, and determine the largest element.
+
+**Algorithm**:
+1. Start the program and take input for the number of elements in the array (n).
+2. Declare an array of size n and take n integer inputs from the user.
+3. Initialize a variable big with the first element of the array.
+4. Traverse the array from the second element onwards. If any element is greater than big, update big.
+5. After the loop, print the largest element.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n;
+    printf("Enter num of elements in array: ");
+    scanf("%d", &n);
+    int arr[n];
+    printf("Enter %d elements of array: ", n);
+    for (int i = 0; i < n; i++){
+        scanf("%d", &arr[i]);
+    }
+    int big = arr[0];
+    for(int i = 1; i < n; i++){
+        if (arr[i] > big){
+            big = arr[i];
+        }
+    }
+    printf("Largest element is %d\n", big);
+    return 0;
+}
+```
+**Input**:
+```
+Enter num of elements in array: 5  
+Enter 5 elements of array: 3 8 1 6 9  
+```
+**Output**:
+```
+Largest element is 9
+```
+### 33. Magic Number:
+Write a C program to check whether a given number is a magic number or not. A number is considered a magic number if the sum of its digits is repeatedly calculated until a single-digit number is obtained, and the final result is 1.
+
+**Algorithm**:
+1. Start the program and take an integer input n.
+2. Store the original number (on) for later use.
+3. Repeat the following process until n becomes a single-digit number:
+   - Set sum = 0.
+   - Extract each digit of n and add it to sum.
+   - Update n = sum.
+4. If the final value of n is 1, print that it is a magic number. Otherwise, print that it is not a magic number.
+
+**Code**:
+```c
+//1234 is magic number
+#include <stdio.h>
+int main(){
+    int n, on, sum, digit;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    on = n;
+    while(n >= 10){
+        sum = 0;
+        while(n > 0){
+            digit = n % 10;
+            sum += digit;
+            n /= 10;
+        }
+        n = sum;
+    }
+    if (n == 1){
+        printf("%d is a Happy number\n", on);
+    } else {
+        printf("%d is not a Happy number\n", on);
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 1234
+```
+**Output**:
+```
+1234 is a Happy number
+```
+### 34. Mixture of Geometric series:
+Write a C program to find the n-th term in the given number sequence: 1, 1, 2, 3, 4, 9, 8, 27, 16, 81, 32, 243, 64, 729, 128, 2187, ...
+
+**Algorithm**:
+1. Take input n (position in sequence).
+2. If n is odd (n % 2 == 1), compute the term as 2^(n/2).
+3. If n is even (n % 2 == 0), compute the term as 3^((n/2) - 1).
+4. Print the result.
+
+**Code**:
+```c
+#include <stdio.h>
+#include<math.h>
+int main(){
+    int n;
+    printf("Enter value of n : ");
+    scanf("%d", &n);
+    if (n%2==1){
+        int a = pow(2,n/2);
+        printf("%d ", a);
+    } else {
+        int b = pow(3,(n/2)-1);
+        printf("%d ",b);
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter value of n: 16
+```
+**Output**:
+```
+2187
+```
+### 35. Nested Loops:
+Write a C program that takes an integer n as input and prints an n x n square pattern where each element is the word "Hom", separated by spaces.
+
+**Algorithm**:
+1. Take input n (size of the square).
+2. Use a nested loop to print the pattern:
+ - Outer loop runs n times (rows).
+ - Inner loop runs n times (columns) to print "Hom ".
+3. Print a newline (\n) after each row.
+4. End the program.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    for(int i=1;i<=n;i++){
+        for (int j=1;j<=n;j++){
+            printf("Hom ");
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 3
+```
+**Output**:
+```
+Hom Hom Hom  
+Hom Hom Hom  
+Hom Hom Hom  
+```
+### 36. Nested, Tree Recursion:
+Write a C program demonstrating nested recursion and tree recursion.
+
+**Algorithm**:
+For nested recursion:
+1. If n > 100, return n - 10.
+2. Otherwise, call nest(nest(n + 11)).
+3. The recursion repeatedly increases n until it reaches above 100, then starts returning values.
+For tree recursion:
+1. If n == 0, return (base case).
+2. Print n (preorder traversal: root, left, right).
+3. Recursively call tree(n - 1) twice.
+
+**Code**:
+```c
+#include <stdio.h>
+int nest(int n){  // Nested recursion
+    if (n > 100)
+        return n - 10;
+    return nest(nest(n + 11));
+}
+void tree(int n) // Tree recursion{
+    if(n == 0)
+        return;
+    printf("%d ", n); // preorder traversal -- root, left, right
+    tree(n - 1);
+    tree(n - 1);
+}
+int main(){
+    printf("Nested recursion result : %d\n\n", nest(95));
+    printf("Tree recursion result : ");
+    tree(3);
+    return 0;
+}
+```
+**Output**:
+```
+Nested recursion result : 91  
+Tree recursion result : 3 2 1 0 0 1 0 0 2 1 0 0 1 0 0  
+```
+### 37. Niven's Number/ Harshad's Number:
+A Niven's number (also called a Harshad number) is an integer that is divisible by the sum of its digits. Your task is to write a program to determine whether a given number is a Niven's number or not.
 
 **Algorithm**:
 1. Input the number: Read an integer n from the user.
 2. Store the original number: Create a variable on and assign the value of n to it (this helps for comparison in the final output).
 3. Sum the digits of the number:
-   Initialize a variable sum to store the sum of digits.
-   Extract each digit by using the modulus operator (n % 10), and add it to sum.
-   Remove the last digit of n by performing integer division (n /= 10).
+   - Initialize a variable sum to store the sum of digits.
+   - Extract each digit by using the modulus operator (n % 10), and add it to sum.
+   - Remove the last digit of n by performing integer division (n /= 10).
 4. Check if the number is divisible by the sum of its digits:
-   If on % sum == 0, the number is a Niven's number.
-   Otherwise, it is not a Niven's number.
+   - If on % sum == 0, the number is a Niven's number.
+   - Otherwise, it is not a Niven's number.
 5. Output the result: Print whether the number is a Niven's number or not based on the divisibility check.
 
 **Code**:
 ```c
 #include <stdio.h>
-int main()
-{
+int main() {
     int n, on, rem = 0, sum = 0;
     printf("Enter number: ");
     scanf("%d", &n);
     on = n;
-    while( n > 0)
-    {
+    while( n > 0){
         rem = n % 10;
         sum += rem;
         n /= 10;
     }
-    if (on % sum == 0)
-    {
+    if (on % sum == 0){
         printf("%d is Niven's number.\n", on);
-    }
-    else
-    {
+    } else {
         printf("%d is not a Niven's number.\n", on);
     }
     return 0;
 }
 ```
-
 **Sample input**:
 ```
 18
 ```
-
 **Sample output**:
 ```
 18 is Niven's number.
+```
+### 38. Pascal's Triangle:
+Write a C program to print Pascal's Triangle of height n using loops and combinatorial logic.
+
+**Algorithm**:
+1. Take input n (number of rows in Pascal’s Triangle).
+2. Use a nested loop structure:
+  - Outer loop (i): Iterates from 0 to n-1, representing rows.
+  - Inner loop (s): Prints spaces for alignment to maintain a triangle shape.
+  - Inner loop (j): Computes and prints Pascal’s triangle values using binomial coefficients
+     - C(i,j) = i! / j!×(i−j)!
+     - If j == 0, set c = 1.
+     - Otherwise, update c = c * (i - j + 1) / j using an iterative approach.
+3. Print the computed values in a formatted manner (%4d ensures spacing).
+​
+**Code**:
+```c
+#include <stdio.h>
+#include<math.h>
+int main(){
+    int n, c, i, j, s;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    for(int i = 0; i < n; i++){
+        for (s = 1; s <= n - i; s++){
+            printf("  ");
+        }
+        for(int j = 0; j <= i; j++) {
+            if (j == 0 || i == 0) {
+                c = 1;
+            }  else {
+                c = c * (i - j + 1) / j;
+            }
+            printf("%4d", c);
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 5
+```
+**Output**:
+```
+          1
+        1   1
+      1   2   1
+    1   3   3   1
+  1   4   6   4   1
+```
+### 39. Perpendicular:
+Write a C program to print a hollow pyramid pattern using the & symbol, where the first and last rows are fully filled, and intermediate rows have & only at the edges.
+
+**Algorithm**:
+1. Take input n (height of the pyramid).
+2. Use a nested loop to generate the pyramid structure:
+  - Outer loop (i): Iterates through rows (from 1 to n).
+  - First inner loop (j): Prints leading spaces to align the pyramid.
+  - Second inner loop (j): Prints:
+    - & if it's the first row, last row, or the pyramid edges (j == 1 or j == (2*i - 1)).
+    - Space (' ') otherwise for the hollow effect.
+3. Move to the next row using printf("\n").
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n;
+    printf("Enter n: ");
+    scanf("%d",&n);
+    for(int i=1;i<=n;i++) {
+        for (int j=1;j<=n-i;j++) {
+            printf(" ");
+        }
+        for (int j = 1; j <= (2*i - 1); j++){
+            if (i == 1 || i == n || j == i) {
+            printf("&");
+            } else {
+               printf(" ");
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 5
+```
+**Output**:
+```
+    &    
+   & &   
+  &   &  
+ &     & 
+&&&&&&&&&
+```
+### 40. Pointers intro:
+Write a C program to demonstrate pointers, memory addresses, and arrays with pointers.
+
+**Algorithm**:
+1. Declare an integer variable (num = 100) and initialize it.
+2. Create a pointer (ptr) that stores the address of num.
+3. Print: The value of num. The memory address of num. The pointer ptr (should match &num).
+4. Declare an integer array (nums[6]) with six elements.
+5. Use a loop to print the memory addresses of each element in nums[6].
+6. End the program.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int num = 100; //100 is in num
+    int *ptr = &num;// int type of 100 is 
+    printf("%d, %u\n", num, &num); //pointer value 
+    printf("%p\n", num);
+    printf("%p\n", &num); //memory address
+    printf("%p\n",ptr);
+    printf("\n");
+    printf("Example 2\n");
+    int nums[6] = {100, 200, 500, 800, 300, 600};
+    int i;
+    for (i = 0; i < 6; i++){
+        printf("%p \n", &nums[i]);
+    }
+    return 0;
+}
+```
+**Output**:
+```
+100, 6422284
+0x64e0
+0x64e0
+0x64e0 
 ```
