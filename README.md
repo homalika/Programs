@@ -1751,3 +1751,314 @@ int main(){
 0x64e0
 0x64e0 
 ```
+### 41. Prime numbers in range:
+Write a C program to print all prime numbers in a given interval (both inclusive). A prime number is a natural number greater than 1 that is only divisible by 1 and itself. The user provides two numbers, a and b, and the program outputs all prime numbers between a and b (both inclusive).
+
+**Algorithm**:
+1. Read two integers, a and b, from the user.
+2. Define a function prime(n) to check if a number n is prime:
+  - If n is less than or equal to 1, return 0 (not prime).
+  - Initialize a loop to check divisibility from 2 to sqrt(n):
+  - If n is divisible by any number in this range, return 0 (not prime).
+  - If no divisor is found, return 1 (prime).
+3. Loop through all numbers from a to b: If a number is prime (using prime(n) function), print it.
+
+**Code**:
+```c
+#include <stdio.h>
+int prime(int n) {
+    if (n <= 1) return 0; // Not prime
+    for (int i = 2; i * i <= n; i++) // -- alternate method while loop
+    {
+        if (n % i == 0) return 0; // Divisible, not prime
+    }
+    return 1; // Prime
+}
+int main() {
+    int a, b;
+    printf("Enter a and b : ");
+    scanf("%d %d", &a, &b);
+    printf("Prime numbers between %d and %d are: ", a, b);
+    for (int i = a; i <= b; i++) {
+        if (prime(i)) {
+            printf("%d ", i);
+        }
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter a and b : 2 15
+```
+**Output**:
+```
+Prime numbers between 2 and 15 are: 2 3 5 7 11 13
+```
+### 42. Remove Duplicates:
+Write a C program to remove duplicate elements from a sorted array. Given an array arr[] of size n.  The duplicates should be removed in-place.
+
+**Algorithm**:
+1. Initialize an array arr[] and determine its size n.
+2. If n is 0 or 1, print the array as it is (no duplicates to remove).
+3. Initialize an index j = 0 to keep track of unique elements.
+4. Loop through the array: If arr[i] is different from arr[i + 1], store arr[i] in arr[j] and increment j.
+5. Print the unique elements up to index j.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int arr[] = { 1, 1, 2, 2, 2, 3, 4, 4, 4};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    if (n == 0 || n == 1) {
+        printf("Array after removing duplicates: ");
+        for(int i = 0; i < n; i++)  { 
+            printf("%d ", arr[i]);
+        }
+        return 0;
+    }
+    int j = 0; // for index of next unique element 
+    for(int i = 0; i < n; i++)    // for(int i = 0, i < n - 1, i++)
+    {
+        if (arr[i] != arr[i + 1]) {
+            arr[j++] = arr[i];
+        }
+    }
+    printf("The array after removing duplicates is : ");
+    for(int  i = 0; i < j; i++) {
+        printf("%d ", arr[i]);
+    }
+    return 0;
+}
+```
+**Input**:
+```
+arr[] = {1, 1, 2, 2, 2, 3, 4, 4, 4}  
+```
+**Output**:
+```
+The array after removing duplicates is: 1 2 3 4  
+```
+### 43. Reverse of a number:
+Write a C program to reverse a given integer number. The program should take an integer input, reverse its digits, and display the reversed number.
+
+**Algorithm**:
+1. Take an integer input num from the user.
+2. Initialize rev = 0 to store the reversed number.
+3. Use a while loop to reverse the digits of num:
+  - Extract the last digit using rem = num % 10.
+  - Append it to rev using rev = rev * 10 + rem.
+  - Remove the last digit using num /= 10.
+4. Print the reversed number.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int num, rev = 0, rem;
+    printf("Enter a number: ");
+    scanf("%d", &num);
+    int temp = num;
+    while(num != 0) {
+        rem = num % 10;
+        rev = rev * 10 + rem;
+        num /= 10;
+    }
+    printf("Reverse : %d \n", rev);
+    return 0;
+}
+```
+**Input**:
+```
+Enter a number: 1234
+```
+**Output**:
+```
+Reverse : 4321
+```
+### 44. Second largest in array:
+Write a C program to find the second largest element in an array. The user provides an array of at least two elements, and the program finds the second largest distinct number.
+
+**Algorithm**:
+1. Take an integer input n (number of elements in the array).
+  - If n < 2, print an error message and exit.
+2. Declare an array arr[n] and take n elements as input.
+3. Initialize:
+  - big = arr[0] (largest element)
+  - bigg = -1 (second largest element)
+4. Loop through the array:
+   - If arr[i] > big: Set bigg = big . Update big = arr[i]
+   - Else if arr[i] > bigg and arr[i] != big: Update bigg = arr[i]
+5. If bigg == -1, print "No second largest element present."
+6. Else, print bigg as the second largest element.
+
+**Code**:
+```c
+#include <stdio.h>
+int main() {
+    int n;
+    printf("Enter num of elements in array: ");
+    scanf("%d", &n);
+    if (n < 2){
+        printf("Array must have atleast 2 elements\n");
+        return 0;
+    }
+    int arr[n];
+    printf("Enter %d elements of array: ", n);
+    for (int i = 0; i < n; i++)  {
+        scanf("%d", &arr[i]);
+    }
+    int big = arr[0], bigg = -1;
+    for(int i = 1; i < n; i++) {
+        if (arr[i] > big) {
+            bigg = big;
+            big = arr[i];
+        }
+        else if (arr[i] > bigg && arr[i] != big) {
+            bigg = arr[i];
+        }
+    }
+    if (bigg == -1){
+        printf("No second largest element present.\n");
+    } else {
+        printf("Second element is %d\n", bigg);
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter num of elements in array: 4  
+Enter 4 elements of array: 5 6 6 4  
+```
+**Output**:
+```
+Second element is 5
+```
+### 45. String operations:
+Write a C program to demonstrate basic string operations, including finding the length of a string, copying a string, concatenating two strings, and comparing two strings using standard library functions.
+
+**Algorithm**:
+1. Declare and initialize character arrays (char str[]).
+2. Use strlen() to find and print the length of a string.
+3. Use sizeof() to print the allocated size of a string.
+4. Copy one string to another using strcpy().
+5. Concatenate two strings using strcat().
+6. Compare strings using strcmp() and print the result.
+
+**Code**:
+```c
+#include<stdio.h>
+#include<string.h>  //string directory
+int main() {
+    char str[20] = "abcdefghijkl";
+    char strs[20] = "abcdefghijkl";
+    char strss[20] = "abcd";
+    char strr[20]; //for strcpy
+    char con[20] = "mnopqrstuvwxyz"; //for strcat
+    printf("Length of string str : %ld\n", strlen(str));
+    printf("Size of string str is : %ld\n", sizeof(str));
+    strcpy(strr, str);
+    printf("Copied string strr from str is : %s\n", strr);
+    strcat(str, con);
+    printf("Concatenated string (str and con) is : %s\n", str);
+    printf("String comparison of str and strs is %d\n", strcmp(str, strs));  // if both strings equal -- 0, else -- 1
+    printf("String comparison of str and strss is %d\n", strcmp(str, strss)); //returns debug value
+    return 0;
+}
+```
+**Output**:
+```
+Length of string str : 12
+Size of string str is : 20
+Copied string strr from str is : abcdefghijkl
+Concatenated string (str and con) is : abcdefghijklmnopqrstuvwxyz
+String comparison of str and strs is 0
+String comparison of str and strss is debug_value
+```
+### 46. Strong number/Krishna Murthy num:
+Write a C program to check whether a given number is a Strong Number.
+ - A Strong Number is a number where the sum of the factorials of its digits is equal to the original number.
+
+**Algorithm**:
+1. Take an integer input num from the user.
+2. Store the original number onum for comparison.
+3. Initialize sum = 0.
+4. Extract each digit rem using num % 10:
+  - Calculate the factorial of rem using a for loop.
+  - Add the factorial to sum.
+  - Remove the last digit from num using num /= 10.
+6. If sum == onum, print "Strong number"; otherwise, print "Not a Strong number".
+
+**Code**:
+```
+#include <stdio.h>
+int main() {
+    int num, onum, rem, sum = 0;
+    printf("Enter the number: ");
+    scanf("%d", &num);
+    onum = num;
+    while(num > 0) {
+        rem = num % 10;
+        int fact = 1;
+        for (int i = 1; i <= rem; i++)  {
+            fact *= i;
+        }
+        sum += fact;
+        num /= 10;  
+    }
+    if (sum == onum) {
+        printf("%d is a Strong number\n", onum);
+    } else {
+        printf("%d is not a Strong number\n", onum);
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter the number: 145
+```
+**Output**:
+```
+145 is a Strong number
+```
+### 47. Swap first and last digits:
+Write a C program to swap the first and last digits of a given number.
+
+**Algorithm**:
+1. Take an integer input n from the user.
+2. Determine the number of digits using log10(n).
+3. Extract the first digit using n / pow(10, digit).
+4. Extract the last digit using n % 10.
+5. Swap the first and last digits by forming a new number:
+  - Multiply the last digit by pow(10, digit) to place it at the front.
+  - Keep the middle digits unchanged using (n % (int)pow(10, digit) - last + one).
+6. Print the swapped number.
+
+**Code**:
+```c
+#include <stdio.h>
+#include<math.h>
+int main() {
+    int n, one, last, digit, swap;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    digit = (int)log10(n); // to get number of digits in a number
+    one = n / pow(10, digit);
+    last = n % 10;
+    swap = last * pow(10, digit) + (n % (int)pow(10, digit) - last + one);
+    printf("Swapped number is : %d\n", swap);
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 1234
+```
+**Output**:
+```
+Swapped number is: 4231
+```
+### 48. 
