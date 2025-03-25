@@ -2061,4 +2061,224 @@ Enter n: 1234
 ```
 Swapped number is: 4231
 ```
-### 48. 
+### 48. Swap using pointers:
+Write a C program to swap two numbers using pointers.
+
+**Algorithm**:
+1. Declare two integer variables a and b.
+2. Declare two pointer variables p1 and p2.
+3. Take input values for a and b.
+4. Assign p1 = &a and p2 = &b to store addresses.
+5. Use a temporary variable temp to swap the values: temp = *p1 ,*p1 = *p2, *p2 = temp
+6. Print the swapped values of a and b.
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int a, b, *p1, *p2, temp; //pointer val of a is p1 and b is p2
+    printf("Enter the values of a and b: ");
+    scanf("%d %d", &a, &b);
+    p1 = &a;
+    p2 = &b;
+    temp = *p1;  // address of val in p1 to temp
+    *p1 = *p2;
+    *p2 = temp;
+    printf("After swapping : \n");
+    printf("a = %d\n", a);
+    printf("b = %d\n", b);
+    return 0;
+}
+```
+**Input**:
+```
+Enter the values of a and b: 5 10
+```
+**Output**:
+```
+After swapping:
+a = 10
+b = 5
+```
+### 49. Swap:
+Write a C program to swap two numbers without using a temporary variable.
+
+**Algorithm**:
+1. Take two integer inputs a and b.
+2. Print the values before swapping.
+3. Use the swapping formula:
+a = (a + b) - (b = a)
+4. Print the swapped values of a and b
+
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int a, b;
+    printf("Enter a and b: ");
+    scanf("%d %d", &a, &b);
+    printf("Before Swap : %d %d\n", a, b);
+    a = (a + b) - (b = a); // method 1
+    printf("After Swap : %d %d", a, b);
+    return 0;
+}
+```
+### 50. Triangles:
+Write a C program to print two different triangular patterns using the word "Hom" based on a given number n.
+
+**Algorithm**:
+1. Take input n (number of rows).
+2. First Triangle (Descending Order)
+  - Loop i from 1 to n:
+    - Loop j from i to n:
+      - Print "Hom " without a newline.
+    - Move to the next line.
+3. Print a newline for separation.
+4. Second Triangle (Ascending Order)
+  - Loop i from 1 to n:
+    - Loop j from 1 to i:
+      - Print "Hom " without a newline.
+    - Move to the next line.
+   
+**Code**:
+```c
+#include <stdio.h>
+int main(){
+    int n;
+    printf("Enter n: ");
+    scanf("%d", &n);
+    for(int i=1;i<=n;i++){
+        for (int j=i;j<=n;j++) {
+            printf("Hom ");
+        }
+        printf("\n");
+    }
+    printf("\n");
+    for(int i=1;i<=n;i++) {
+        for (int j=1;j<=i;j++) {
+            printf("Hom ");
+        }
+        printf("\n");
+    }
+    return 0;
+}
+```
+**Input**:
+```
+Enter n: 4
+```
+**Output**:
+```
+Hom Hom Hom Hom 
+Hom Hom Hom 
+Hom Hom 
+Hom 
+
+Hom 
+Hom Hom 
+Hom Hom Hom 
+Hom Hom Hom Hom 
+```
+### 51. Types of Functions:
+Write a C program that demonstrates different types of functions by performing basic arithmetic operations and displaying a greeting message.
+
+**Algorithm**:
+1. Declare hi() function to print "Good morning!".
+2. Declare sum(int a, int b) function to compute and print the sum of a and b.
+3. Declare mul(int a, int b) function to return the multiplication of a and b.
+4. Declare sub(int a, int b) function to compute and print the subtraction of a and b.
+5. In main() function:=
+  - Declare integers a = 5, b = 10.
+  - Call hi().
+  - Call sum(a, b).
+  - Store the return value of mul(a, b) and print it.
+  - Call sub(a, b).
+
+**Code**:
+```c
+#include <stdio.h>
+void hi() { //no arguments and no return value
+    printf("Good morning!\n");
+}
+void sum(int a, int b) {  //with arguments and no return value
+    int add = a + b;
+    printf("Summation : %d\n", add);
+}
+int mul(int a, int b) {  //with arguments and return value
+    return a * b;
+}
+int sub(int a, int b) { //with arguments and no return value
+    int x = a - b;
+    printf("Subtraction : %d\n", x);
+}
+int main() {
+    int a = 5, b = 10;
+    hi();
+    sum(a, b);
+    int res = mul(a, b);
+    printf("Product : %d\n", res);
+    sub(a, b);
+    return 0;
+}
+```
+**Output**:
+```
+Good morning!  
+Summation : 15  
+Product : 50  
+Subtraction : -5  
+```
+### 52. Valley Count:
+A hiker is walking on a trail, represented as a series of steps either uphill ('U') or downhill ('D'). A valley is defined as a sequence of consecutive steps below sea level (level 0), starting with a downhill step ('D') and ending when the hiker returns to sea level.
+Given an integer N representing the number of steps and a string PATH representing the sequence of steps taken by the hiker, write a program to count the number of valleys encountered.
+
+**Algorithm**:
+1. Initialize:
+  - level = 0 (Starting at sea level)
+  - valley_count = 0 (Counter for valleys)
+2. Iterate through each character in the PATH string:
+  - If the step is 'U' (Upwards): 
+     - Increase level by 1.
+     - If level == 0, it means the hiker returned to sea level from a valley, so increment valley_count.
+  - If the step is 'D' (Downwards):
+     - Decrease level by 1.
+3. After iterating through all steps, print the value of valley_count.
+
+**Code**:
+```c
+#include <stdio.h>
+int valley(long int steps, char *path){
+    long int level = 0, vcount = 0; // Track level and valley coun
+    for (long int i = 0; i < steps; i++) {
+        if (path[i] == 'U') {
+            level++;
+            if (level == 0) { // Returning to sea level from a valley 
+                vcount++;
+            }
+        }  else if (path[i] == 'D') {
+            level--;
+        }
+    }
+    return vcount;
+}
+int main() {
+    long int steps;
+    printf("Enter number of steps: ");
+    scanf("%ld", &steps);
+    char path[steps + 1]; // +1 for null character '\0'
+    printf("Enter the path string: ");
+    scanf("%s", path);
+    int result = valley(steps, path);
+    printf("Valleys are %d\n", result);
+    return 0;
+}
+```
+**Input**:
+```
+Enter number of steps: 8
+Enter the path string: UDDDUDUU
+```
+**Output**:
+```
+Valleys are 1
+```
